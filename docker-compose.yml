@@ -14,8 +14,6 @@ services:
 
   backend:
     image: syncup/backend:latest
-    ports:
-      - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/syncup
       SPRING_DATASOURCE_USERNAME: postgres

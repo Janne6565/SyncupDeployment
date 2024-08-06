@@ -46,6 +46,20 @@ To get started with the deployment, follow these steps:
 
 The deployment configuration for the Syncup project can be found in the `docker-compose.yml` file. You can modify this file to customize the deployment according to your needs.
 
+## How it works
+
+This deployment uses 4 containers:
+1. SyncupV2 - the backend and main application
+2. ImageManagementService - a utility service to handle user image uploads
+3. PostgreSQL database - database for both SyncupV2 and the ImageManagementService
+4. Nginx - nginx as a proxy to redirect all requests correctly
+
 ## Usage
 
-Once the containers are up and running, you can access the SyncUpV2 application at `http://localhost:8080` and the ImageManagementService at `http://localhost:8081`.
+Once all three containers are up and running, you can access the deployment through Nginx, which will be accessible on port 80.  
+the Endpoints which are available: 
+ - `/api/**` any calls are being redirected to the SyncUpV2 container <br>
+ example:  `http://localhost:80/api/v1/auth/user/` will be redirected to `http://backend:8080/v1/auth/user`
+ - `/images/**` any calls are being redirected to static resources inside the `./persistent_data/uploaded_images/` directory <br>
+ example: 
+ `http://localhost:80/images/originals/image1.webp` will be mapped to the file: `./persistent_data/uploaded_images/originals/image1.webp`
