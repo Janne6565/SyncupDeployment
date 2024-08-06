@@ -43,8 +43,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
-    ports:
-      - "5433:5432"
     volumes:
       - ./persistent_data/postgres-data:/var/lib/postgresql/data
       - ./init-scripts/db:/docker-entrypoint-initdb.d/
